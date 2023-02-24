@@ -1,0 +1,30 @@
+describe("Handling dropdown",()=>{
+    it("dropdown",async ()=>{
+        await browser.maximizeWindow()
+        await browser.url("http://testingserver:8888/index.php?action=Login&module=Users")
+        expect(browser).toHaveUrlContaining("Login&module=Users")
+        await browser.$(`//input[@name="user_name"]`).setValue("admin")
+        await browser.$(`//input[@name="user_password"]`).setValue("admin")
+        await browser.$(`//input[@id="submitButton"]`).click()
+
+    })
+    it.skip("enter home page",async ()=>{
+        expect(browser).toHaveUrlContaining("action=index&module=Home")
+        await browser.$(`//img[@src="themes/images/arrow_down_black.png"]`).click()
+        await browser.$(`//td[contains(text(),'Organizations')]`).click()
+        await browser.pause(10000)
+        await browser.$(`//input[@value="Apply"]`).click()
+    })
+    it("dropdown",async ()=>{
+        await browser.$(`//a[contains(.,"Organizations")]`).click()
+        expect(browser).toHaveUrlContaining("Accounts&action=index")
+        const svalues=await browser.$(`//select[@name="search_field"]`)
+        await svalues.click()
+        await svalues.selectByIndex(2)
+        await browser.pause(10000)
+        await svalues.selectByVisibleText("Phone")
+        await browser.pause(10000)
+        await svalues.selectByAttribute("value","website")
+        await browser.pause(10000)
+    })
+})
