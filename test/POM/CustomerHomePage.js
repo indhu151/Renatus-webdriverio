@@ -4,7 +4,7 @@ class CustomerHomePage
         return $(`//li[text()="Fund Transfer"]`)
     }
     //business library
-    async clickOnFundTransfer(){
+    async clickOnFundTransfer_btn(){
        await (this.fundTransfer_Mod).click()
     }
 

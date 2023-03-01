@@ -58,14 +58,14 @@ class OpenAccountPage
    //business library
    async validDetails()
    {
-    await (this.name_tf).setValue("Divya15")
+    await (this.name_tf).setValue("Diya17")
     const gen=await (this.gender)
     gen.selectByVisibleText("Female")
-    await (this.mobileno_tf).setValue(9765545214)
-    await (this.emailid_tf).setValue("divya15@gmail.com")
+    await (this.mobileno_tf).setValue(9762354124)
+    await (this.emailid_tf).setValue("diya17@gmail.com")
     await (this.landlineno_tf).setValue(223344)
-    await (this.dateOfBirth_tf).setValue("24-08-1991")
-    await (this.pan_tf).setValue("AZDIJ3856H")
+    await (this.dateOfBirth_tf).setValue("24-07-1994")
+    await (this.pan_tf).setValue("AZDIJ4855H")
     await (this.citizenship_tf).setValue("345677")
     await (this.homeaddress_tf).setValue("banshankari")
     await (this.officeaddress_tf).setValue("BTM")
@@ -80,7 +80,7 @@ class OpenAccountPage
     const acctype=await (this.accounttype)
     acctype.selectByVisibleText("Saving")
     }
-    async clickOnSubmit(){
+    async clickOnSubmit_btn(){
     const submitbtn=await (this.submit_btn)
     await submitbtn.waitForClickable({ timeout: 10000 });
     await submitbtn.click()

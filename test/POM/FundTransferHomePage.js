@@ -22,7 +22,7 @@ class FundTransferHomePage{
         return $(`//input[@name="fnd_trns_btn"]`)
     }
     //business library
-    async clickOnAddBeneficiary(){
+    async clickOnAddBeneficiary_btn(){
         await (this.addbeneficiary_link).click()
     }
     async select_beneficiary(){
@@ -35,7 +35,7 @@ class FundTransferHomePage{
     async remark_sent(){
         await (this.remark_tf).setValue("Amount transferred")
     }
-    async clickOnSendLink(){
+    async clickOnSend_btn(){
         await (this.send_Btn).click()
     }
 

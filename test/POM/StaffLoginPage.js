@@ -10,7 +10,7 @@ class StaffLoginPage
         return $(`//input[@name="staff_login-btn"]`)
     }
     //business library
-    async StaffLoginMod(){
+    async StaffLogin_details(){
         await (this.StaffID_tf).setValue(210001)
         await (this.Password_tf).setValue("password")
         const login = await (this.login_btn)

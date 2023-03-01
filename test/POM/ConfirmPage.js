@@ -1,17 +1,16 @@
 class ConfirmPage
 {
-    
     get confirm_btn(){
         return $(`//input[@name="cnfrm-submit"]`)
     }
     //business library
-    async clickOnConfirm(){
+    async clickOnConfirm_btn(){
         await (this.confirm_btn).click()
     }
     async isAlertPresent(){
        console.log(await browser.isAlertOpen())
     }
-    async ApplicationNo(){
+    async capture_ApplicationNo(){
         var text=await browser.getAlertText()
         console.log(text);
         var matches = text.match(/(\d+)/);

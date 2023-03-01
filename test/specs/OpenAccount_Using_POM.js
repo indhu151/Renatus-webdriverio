@@ -21,6 +21,7 @@ import CustomerHomePage from "../POM/CustomerHomePage.js"
 import FundTransferHomePage from "../POM/FundTransferHomePage.js"
 import AddBeneficiaryPage from "../POM/AddBeneficiaryPage.js"
 import OTPVerificationPage from "../POM/OTPVerificationPage.js"
+import { expect } from "chai"
 describe("Online Banking",async()=>{
      let ApplicationNo
      let AccountNum=11
@@ -29,74 +30,71 @@ describe("Online Banking",async()=>{
      let debitpinno=12
      let custId=12
      let OTP
-      it("navigation to application",async ()=>{
+      it("navigate to application",async ()=>{
         await browser.maximizeWindow()
         await browser.url("http://testingserver/domain/Online_Banking_System/")
-        expect(browser).toHaveUrlContaining("Online_Banking_System/")
-      })
+        let title=await browser.getTitle()
+        expect(title).to.equal("Online Banking System")
+    })
       it("click on openAccount",async ()=>{
-        await HomePage.clickOnOpenAccount()
-        console.log(browser.getTitle());
-        expect(browser).toHaveTitleContaining('Registration Form')
-      })
+        await HomePage.clickOnOpenAccount_link()
+        let title=await browser.getTitle();
+        expect(title).to.include("Registration Form")
+    })
       it("Enter all the valid details",async ()=>{
         await OpenAccountPage.validDetails()
-      })
+    })
       it("click on submit",async ()=>{
-          await OpenAccountPage.clickOnSubmit()
-        })
+        await OpenAccountPage.clickOnSubmit_btn()
+    })
       it("confirm",async ()=>{
-         console.log(browser.getTitle());
-         expect(browser).toHaveTitleContaining("Confirm")
-         await ConfirmPage.clickOnConfirm()
-         await ConfirmPage.isAlertPresent()
-         ApplicationNo= await ConfirmPage.ApplicationNo()
-         console.log("Application_Number ="+ApplicationNo);
-        })
+        let title=await browser.getTitle();
+        expect(title).to.equal("Confirm")
+        await ConfirmPage.clickOnConfirm_btn()
+        await ConfirmPage.isAlertPresent()
+        ApplicationNo= await ConfirmPage.capture_ApplicationNo()
+        console.log("Application_Number ="+ApplicationNo);
+    })
       it("click on staffLogin",async ()=>{
-        await HomePage.clickOnStaffLogin()
-        console.log(browser.getTitle());
-        expect(browser).toHaveTitleContaining("Staff Page")
-      })
+        await HomePage.clickOnStaffLogin_link()
+        expect(await browser.getTitle()).to.include("Staff Page")
+    })
     it("Navigate to StaffLogin Page",async ()=>{
-        await StaffLoginPage.StaffLoginMod()
-        console.log(browser.getTitle());
-        expect(browser).toHaveTitleContaining("Staff Home")
+        await StaffLoginPage.StaffLogin_details()
+        let title=await browser.getTitle();
+        expect(title).to.equal("Staff Home")
       })
     it("click on approve pending",async ()=>{
-        await StaffHomePage.clickOnApprovePending()
-        console.log(browser.getTitle());
-        expect(browser).toHaveTitleContaining("Pending Customers")
-        await ApprovePendingPage.searchApplicationAndApprove(ApplicationNo)
-        AccountNum=await ApprovePendingPage.AccountNumber()
+        await StaffHomePage.clickOnApprovePending_btn()
+        expect(await browser.getTitle()).to.equal("Pending Customers")
+        await ApprovePendingPage.searchApplication_Approve(ApplicationNo)
+        AccountNum=await ApprovePendingPage.capture_AccountNumber()
         console.log("Account number ="+AccountNum);
       })
-    it("click on homebutton of staffpage",async ()=>{
-      await StaffHomePage.clickOnHomebt_Staff()
-      expect(browser).toHaveUrlContaining("staff_profile.php")
-    })
-    it("click on credit customer",async ()=>{
-      await StaffHomePage.clickOnCreditCust()
-      expect(browser).toHaveUrlContaining("credit_customer_ac.php")
+    it("Navigate to staff Homepage",async ()=>{
+        await StaffHomePage.clickOnStaff_home_link()
+        expect(await browser.getUrl()).to.include("staff_profile.php")
+      })
+    it("click on credit customer_btn",async ()=>{
+        await StaffHomePage.clickOnCreditCust_btn()
+        expect(await browser.getUrl()).to.include("credit_customer_ac.php")
     })
     it("enter the credit details",async()=>{
-      await CreditCustomerPage.creditAmount(AccountNum)
+        await CreditCustomerPage.credit_Amount(AccountNum)
     })
     it("Logout of staffHome page",async ()=>{
-        await CreditCustomerPage.logoutLink()
-        console.log(browser.getTitle())
-        expect(browser).toHaveTitleContaining("Staff Page")
+       await CreditCustomerPage.logout_Link()
+       expect(await browser.getTitle()).to.equal("Staff Page")
     })
     it("click on home button",async ()=>{
-      await HomePage.clickOnHome()
-      console.log(browser.getTitle());
-      expect(browser).toHaveTitleContaining("Online Banking System")
+      await HomePage.clickOnHome_link()
+      expect(await browser.getTitle()).to.equal("Online Banking System")
     })
     it("click on ApplyDebit",async ()=>{
-      await HomePage.clickOnApplyDebit()
-      expect(browser).toHaveUrlContaining('debit_card_form.php')
+      await HomePage.clickOnApplyDebit_link()
+      expect(await browser.getUrl()).to.include('debit_card_form.php')
     })
-  it("Enter the vlid details",async ()=>{
+  it("Enter the valid details",async ()=>{
       await ApplyDebitPage.details_for_Debit(AccountNum)
       await ApplyDebitPage.clickOnSubmit_debit()
     })
@@ -104,69 +102,61 @@ describe("Online Banking",async()=>{
       text3=await ApplyDebitPage.alertText()
     })
   it("get debit num and pin",async ()=>{
-      debitnumber=await ApplyDebitPage.Debit_Num(text3)
-      debitpinno=await ApplyDebitPage.Debit_Pin(text3)
+      debitnumber=await ApplyDebitPage.capture_Debit_Num(text3)
+      debitpinno=await ApplyDebitPage.capture_Debit_Pin(text3)
       console.log("debit num ="+debitnumber);
       console.log("debitpin="+debitpinno);
     })
   it("click on home button",async ()=>{
-     await HomePage.clickOnHome()
-     console.log(browser.getTitle());
-     expect(browser).toHaveTitleContaining("Online Banking System")
-  })
+      await HomePage.clickOnHome_link()
+      expect(await browser.getTitle()).to.equal("Online Banking System")
+    })
   it("move to internetBanking",async ()=>{
-    await HomePage.moveToInternetBanking()
-    await HomePage.clickOnInternetBankingRegister()
-    expect(browser).toHaveUrlContaining('ebanking_reg_form.php')
-  })
-  it("enter all the details",async ()=>{
+     await HomePage.moveToInternetBanking_mod()
+     await HomePage.clickOnInternetBanking_Register_link()
+     expect(await browser.getUrl()).to.include('ebanking_reg_form.php')
+    })
+  it("enter all the details for registration",async ()=>{
     await InternetBanking_RegisterPage.details_CustID(AccountNum,debitnumber,debitpinno)
     await InternetBanking_RegisterPage.clickOnSubmit_Reg()
-    custId=await InternetBanking_RegisterPage.Customer_ID()
+    custId=await InternetBanking_RegisterPage.capture_Customer_ID()
     console.log("CustomerId ="+custId);
   })
   it("navigate to homepage",async ()=>{
-    await HomePage.clickOnHome()
-    console.log(browser.getTitle());
-    expect(browser).toHaveTitleContaining("Online Banking System")
+    await HomePage.clickOnHome_link()
+    expect(await browser.getTitle()).to.contain("Online Banking System")
   })
   it("click on login of internetBanking",async ()=>{
-    await HomePage.moveToInternetBanking()
-    await HomePage.clickOnInternetBankingLogin()
-    console.log(browser.getTitle());
-    expect(browser).toHaveTitleContaining("Login Page")
+    await HomePage.moveToInternetBanking_mod()
+    await HomePage.clickOnInternetBanking_Login_link()
+    expect(await browser.getTitle()).to.contain("Login Page")
   })
   it("enter the login credentials",async ()=>{
     await InternetBanking_LoginPage.Login_Customer(custId)
-    console.log(browser.getTitle());
-    expect(browser).toHaveTitleContaining("My Profile")
+    expect(await browser.getTitle()).to.equal("My Profile")
   })
   it("click on fund transfer",async ()=>{
-    await CustomerHomePage.clickOnFundTransfer()
-    expect(browser).toHaveUrlContaining("fund_transfer.php")
+    await CustomerHomePage.clickOnFundTransfer_btn()
+    expect(await browser.getUrl()).to.includes("fund_transfer.php")
   })
   it("click on add beneficiary",async ()=>{
-    await FundTransferHomePage.clickOnAddBeneficiary()
-    console.log(browser.getTitle());
-    expect(browser).toHaveTitleContaining("Add Beneficiary")
+    await FundTransferHomePage.clickOnAddBeneficiary_btn()
+    expect(await browser.getTitle()).to.equal("Add Beneficiary")
     await AddBeneficiaryPage.beneficiary_details()
     await AddBeneficiaryPage.alertPresentaccept()
   })
   it("fund transfer",async ()=>{
-    await CustomerHomePage.clickOnFundTransfer()
-    console.log(browser.getTitle());
-    expect(browser).toHaveTitleContaining("Fund Transfer")
-  
+    await CustomerHomePage.clickOnFundTransfer_btn()
+    expect(await browser.getTitle()).to.contains("Fund Transfer")
   })
   it("select the beneficiary",async ()=>{
     await FundTransferHomePage.select_beneficiary()
     await FundTransferHomePage.Amt_Trans()
     await FundTransferHomePage.remark_sent()
-    await FundTransferHomePage.clickOnSendLink()
+    await FundTransferHomePage.clickOnSend_btn()
   })
   it("OTP verify",async ()=>{
-    console.log(browser.getTitle());
-    expect(browser).toHaveTitleContaining("OTP Verification")
+    expect(await browser.getTitle()).to.equal("OTP Verification")
     OTP=await OTPVerificationPage.otpnumber()
     console.log(`OTP is = ${OTP}`);
   })
@@ -174,11 +164,8 @@ describe("Online Banking",async()=>{
     await OTPVerificationPage.verification_detail(OTP)
     const message=await OTPVerificationPage.trans_alertmessage()
     console.log(`Transaction message= ${message}`);
-    
   })
   
-  
-  
-  })
+})
   
   

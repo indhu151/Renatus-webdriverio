@@ -36,13 +36,13 @@ class InternetBanking_RegisterPage
     //business library
     async details_CustID(accno,debitno,debitpin)
     {
-        await (this.accholdername_tf).setValue("Divya15")
+        await (this.accholdername_tf).setValue("Diya17")
         await (this.accountNumber_tf).setValue(accno)
         await (this.debitCardNumber_tf).setValue(debitno)
         await (this.debitCardPin_tf).setValue(debitpin)
-        await (this.mobileNo_tf).setValue(9765545214)
-        await (this.panNo_tf).setValue("AZDIJ3856H")
-        await (this.dateOfBirth_tf).setValue("24-08-1991")
+        await (this.mobileNo_tf).setValue(9762354124)
+        await (this.panNo_tf).setValue("AZDIJ4855H")
+        await (this.dateOfBirth_tf).setValue("24-07-1994")
         await (this.last_transc_tf).setValue(10000)
         await (this.password_tf).setValue("abc@123")
         await (this.confirm_pass_tf).setValue("abc@123")
@@ -51,7 +51,7 @@ class InternetBanking_RegisterPage
     {
         await (this.submit_btn).click()
     }
-    async Customer_ID(){
+    async capture_Customer_ID(){
         await browser.isAlertOpen()
         const text4=await browser.getAlertText()
         console.log(text4);

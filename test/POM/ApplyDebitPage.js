@@ -20,10 +20,10 @@ class ApplyDebitPage
     }
     //business library
     async details_for_Debit(AccountNum){
-        await (this.holdername_tf).setValue("Divya15")
-        await (this.dateOfBirth_tf).setValue("24-08-1991")
-        await (this.Panno_tf).setValue("AZDIJ3856H")
-        await (this.mobileNo_tf).setValue(9765545214)
+        await (this.holdername_tf).setValue("Diya17")
+        await (this.dateOfBirth_tf).setValue("24-07-1994")
+        await (this.Panno_tf).setValue("AZDIJ4855H")
+        await (this.mobileNo_tf).setValue(9762354124)
         await (this.Account_no_tf).setValue(AccountNum)
     }
     async clickOnSubmit_debit(){
@@ -38,7 +38,7 @@ class ApplyDebitPage
       await browser.acceptAlert()
       return text3
     }
-    async Debit_Num(text3)
+    async capture_Debit_Num(text3)
     {
       var matches2 = text3.match(/\d+/g);
       console.log(matches2)
@@ -46,7 +46,7 @@ class ApplyDebitPage
       console.log(debitnum);
       return debitnum
     }
-    async Debit_Pin(text3){
+    async capture_Debit_Pin(text3){
       var matches2 = text3.match(/\d+/g);
       console.log(matches2)
       let debitpin=matches2[1];

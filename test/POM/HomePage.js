@@ -27,32 +27,32 @@
 
 
     //business library
-    async clickOnHome(){
+    async clickOnHome_link(){
         await (this.Home_btn).click()
     }
-    async clickOnOpenAccount()
+    async clickOnOpenAccount_link()
     {
         await (this.openAccount_link).click()
     }
-    async clickOnStaffLogin(){
+    async clickOnStaffLogin_link(){
         await (this.staffLogin_link).click()
     }
-    async clickOnApplyDebit(){
+    async clickOnApplyDebit_link(){
         await (this.ApplyDebit_link).click()
     }
-    async moveToInternetBanking(){
+    async moveToInternetBanking_mod(){
         await browser.scroll(0,250)
         await (this.InternetBanking_mod).moveTo()
     }
-    async clickOnInternetBankingRegister(){
+    async clickOnInternetBanking_Register_link(){
         const register=await (this.InternetBankingReg_link)
         await register.waitForDisplayed({ timeout: 3000 });
         await register.click()
     }
-    async clickOnInternetBankingLogin(){
+    async clickOnInternetBanking_Login_link(){
         await (this.InternetBankingLogin_link).click()
     }
-    async clickOnFundTransfer(){
+    async clickOnFundTransfer_link(){
         await (this.FundTransfer_link).click()
     }
 

@@ -12,14 +12,14 @@ class CreditCustomerPage{
         return $(`//input[@name="logout_btn"]`)
     }
     //businesslibrary
-    async creditAmount(accnum){
+    async credit_Amount(accnum){
         await (this.cust_accno_tf).setValue(accnum)
         await (this.AmountText_tf).setValue(10000)
         await (this.credit_btn).click()
         console.log(browser.isAlertOpen())
         await browser.acceptAlert()
     }
-    async logoutLink(){
+    async logout_Link(){
         await (this.logout_button).click()
     }
 }

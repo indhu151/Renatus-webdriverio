@@ -11,12 +11,12 @@ class ApprovePendingPage{
         return $(`//input[@name="approve_cust"]`)
     }
     //business library
-    async searchApplicationAndApprove(applicationnum){
+    async searchApplication_Approve(applicationnum){
         await (this.applicationNo_tf).setValue(applicationnum)
         await (this.search_Btn).click()
         await (this.approve_btn).click()
     }
-       async AccountNumber(){
+       async capture_AccountNumber(){
         console.log(browser.isAlertOpen())
         const text1= await browser.getAlertText()
         var matches1 = text1.match(/(\d+)/);
