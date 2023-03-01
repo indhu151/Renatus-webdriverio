@@ -23,247 +23,248 @@ describe("Online Banking",async()=>{
       await browser.$('=Open Account').click()
       console.log(browser.getTitle());
       expect(browser).toHaveTitleContaining('Registration Form')
+      await browser.pause(10000)
     })
-    it("Enter all the valid details",async ()=>{
-      await browser.$('[name="name"]').setValue("Ria21")
-      const gender= browser.$('[name="gender"]')
-      gender.selectByVisibleText("Female")
-      await browser.$('[name="mobile"]').setValue(9081476231)
-      await browser.$('[name="email"]').setValue("indhu@gmail.com")
-      await browser.$('[name="landline"]').setValue(223356)
-      await browser.$('[name="dob"]').setValue("23-01-1997")
-      await browser.$('[name="pan_no"]').setValue("AZDIJ3456H")
-      await browser.$('[name="citizenship"]').setValue("23456")
-      await browser.$('[name="homeaddrs"]').setValue("BTM")
-      await browser.$('[name="officeaddrs"]').setValue("banshankari")
-      const state=await browser.$('[name="state"]')
-      //await state.waitForDisplayed({ timeout: 3000 });
-      state.selectByVisibleText("Florida")
-      const city=await browser.$('[name="city"]')
-      city.selectByVisibleText("Houston")
-      await browser.$('[name="pin"]').setValue(540987)
-      await browser.$('//input[@name="arealoc"]').setValue("park")
-      await browser.$('[name="nominee_name"]').setValue("Priya")
-      await browser.$('[name="nominee_ac_no"]').setValue(2345631234)
-      const accttype=await browser.$('[name="acctype"]')
-      accttype.selectByVisibleText("Saving")
-    })
+//     it("Enter all the valid details",async ()=>{
+//       await browser.$('[name="name"]').setValue("Ria21")
+//       const gender= browser.$('[name="gender"]')
+//       gender.selectByVisibleText("Female")
+//       await browser.$('[name="mobile"]').setValue(9081476231)
+//       await browser.$('[name="email"]').setValue("indhu@gmail.com")
+//       await browser.$('[name="landline"]').setValue(223356)
+//       await browser.$('[name="dob"]').setValue("23-01-1997")
+//       await browser.$('[name="pan_no"]').setValue("AZDIJ3456H")
+//       await browser.$('[name="citizenship"]').setValue("23456")
+//       await browser.$('[name="homeaddrs"]').setValue("BTM")
+//       await browser.$('[name="officeaddrs"]').setValue("banshankari")
+//       const state=await browser.$('[name="state"]')
+//       //await state.waitForDisplayed({ timeout: 3000 });
+//       state.selectByVisibleText("Florida")
+//       const city=await browser.$('[name="city"]')
+//       city.selectByVisibleText("Houston")
+//       await browser.$('[name="pin"]').setValue(540987)
+//       await browser.$('//input[@name="arealoc"]').setValue("park")
+//       await browser.$('[name="nominee_name"]').setValue("Priya")
+//       await browser.$('[name="nominee_ac_no"]').setValue(2345631234)
+//       const accttype=await browser.$('[name="acctype"]')
+//       accttype.selectByVisibleText("Saving")
+//     })
     
-    it("click on submit",async ()=>{
-      const submitlink=await browser.$('//input[@name="submit"]')
-      await submitlink.waitForClickable({ timeout: 10000 });
-      await submitlink.click()
-      await browser.pause(10000)
-      })
+//     it("click on submit",async ()=>{
+//       const submitlink=await browser.$('//input[@name="submit"]')
+//       await submitlink.waitForClickable({ timeout: 10000 });
+//       await submitlink.click()
+//       await browser.pause(10000)
+//       })
 
-    it("confirm",async ()=>{
-      console.log(browser.getTitle());
-      expect(browser).toHaveTitleContaining("Confirm")
-      const reconfirm=await browser.$('//input[@name="cnfrm-submit"]')
-      await reconfirm.click()
-      console.log(await browser.isAlertOpen())
-      var text=await browser.getAlertText()
-      await browser.pause(10000)
-      console.log(text);
-      var matches = text.match(/(\d+)/);
-      console.log(matches);
-      appno=matches[0];
-      console.log("Application_Number ="+appno);
-      await browser.acceptAlert()
-     })
+//     it("confirm",async ()=>{
+//       console.log(browser.getTitle());
+//       expect(browser).toHaveTitleContaining("Confirm")
+//       const reconfirm=await browser.$('//input[@name="cnfrm-submit"]')
+//       await reconfirm.click()
+//       console.log(await browser.isAlertOpen())
+//       var text=await browser.getAlertText()
+//       await browser.pause(10000)
+//       console.log(text);
+//       var matches = text.match(/(\d+)/);
+//       console.log(matches);
+//       appno=matches[0];
+//       console.log("Application_Number ="+appno);
+//       await browser.acceptAlert()
+//      })
      
-  it("click on staffLogin",async ()=>{
-      browser.$('=Staff Login').click()
-      console.log(browser.getTitle());
-      expect(browser).toHaveTitleContaining("Staff Page")
-  })
-  it("Login",async ()=>{
-      await browser.$('//input[@name="staff_id"]').setValue(210001)
-      await browser.$('//input[@name="password"]').setValue("password")
-      const login = await $('//input[@name="staff_login-btn"]')
-      await login.waitForDisplayed({ timeout: 10000 });
-      await login.click()
-      console.log(browser.getTitle());
-      expect(browser).toHaveTitleContaining("Staff Home")
-  })
-  it("click on approve pending",async ()=>{
-    console.log(appno);
-      await $('//input[@name="apprvac"]').click()
-      console.log(browser.getTitle());
-      expect(browser).toHaveTitleContaining("Pending Customers")
-      await $('//input[@name="application_no"]').setValue(appno)
-      await $('//input[@name="search_application"]').click()
-      const approve=await $('//input[@name="approve_cust"]')
-      await approve.click()
-      console.log(browser.isAlertOpen())
-      const text1= await browser.getAlertText()
-      var matches1 = text1.match(/(\d+)/);
-      console.log(matches1);
-      accno=matches1[0];
-      console.log("Account_Number ="+accno);
-      await browser.acceptAlert()
-  })
-  it("click on homebutton of staffpage",async ()=>{
-    await browser.$('//input[@name="home"]').click()
-    expect(browser).toHaveUrlContaining("staff_profile.php")
+//   it("click on staffLogin",async ()=>{
+//       browser.$('=Staff Login').click()
+//       console.log(browser.getTitle());
+//       expect(browser).toHaveTitleContaining("Staff Page")
+//   })
+//   it("Login",async ()=>{
+//       await browser.$('//input[@name="staff_id"]').setValue(210001)
+//       await browser.$('//input[@name="password"]').setValue("password")
+//       const login = await $('//input[@name="staff_login-btn"]')
+//       await login.waitForDisplayed({ timeout: 10000 });
+//       await login.click()
+//       console.log(browser.getTitle());
+//       expect(browser).toHaveTitleContaining("Staff Home")
+//   })
+//   it("click on approve pending",async ()=>{
+//     console.log(appno);
+//       await $('//input[@name="apprvac"]').click()
+//       console.log(browser.getTitle());
+//       expect(browser).toHaveTitleContaining("Pending Customers")
+//       await $('//input[@name="application_no"]').setValue(appno)
+//       await $('//input[@name="search_application"]').click()
+//       const approve=await $('//input[@name="approve_cust"]')
+//       await approve.click()
+//       console.log(browser.isAlertOpen())
+//       const text1= await browser.getAlertText()
+//       var matches1 = text1.match(/(\d+)/);
+//       console.log(matches1);
+//       accno=matches1[0];
+//       console.log("Account_Number ="+accno);
+//       await browser.acceptAlert()
+//   })
+//   it("click on homebutton of staffpage",async ()=>{
+//     await browser.$('//input[@name="home"]').click()
+//     expect(browser).toHaveUrlContaining("staff_profile.php")
     
-  })
-  it("click on credit customer",async ()=>{
-    await browser.$('//input[@name="credit_cust_ac"]').click()
-    expect(browser).toHaveTitleContaining("Staff Home")
-  })
-  it("enter the credit details",async()=>{
-    await browser.$('//input[@name="customer_account_no"]').setValue(accno)
-    await browser.$('//input[@name="credit_amount"]').setValue(10000)
-    await browser.$('//input[@name="credit_btn"]').click()
-  })
-  it("Logout of staffHome page",async ()=>{
-      await browser.$('//input[@name="logout_btn"]').click()
-      console.log(browser.getTitle())
-      await expect(browser).toHaveTitleContaining("Staff Page")
-  })
-  it("click on home button",async ()=>{
-      await browser.$('=Home').click()
-      console.log(browser.getTitle());
-      expect(browser).toHaveTitleContaining("Online Banking System")
-  })
-  it("click on ApplyDebit",async ()=>{
-    await browser.$('//li[text()="Apply Debit Card"]').click()
-    expect(browser).toHaveUrlContaining('debit_card_form.php')
+//   })
+//   it("click on credit customer",async ()=>{
+//     await browser.$('//input[@name="credit_cust_ac"]').click()
+//     expect(browser).toHaveTitleContaining("Staff Home")
+//   })
+//   it("enter the credit details",async()=>{
+//     await browser.$('//input[@name="customer_account_no"]').setValue(accno)
+//     await browser.$('//input[@name="credit_amount"]').setValue(10000)
+//     await browser.$('//input[@name="credit_btn"]').click()
+//   })
+//   it("Logout of staffHome page",async ()=>{
+//       await browser.$('//input[@name="logout_btn"]').click()
+//       console.log(browser.getTitle())
+//       await expect(browser).toHaveTitleContaining("Staff Page")
+//   })
+//   it("click on home button",async ()=>{
+//       await browser.$('=Home').click()
+//       console.log(browser.getTitle());
+//       expect(browser).toHaveTitleContaining("Online Banking System")
+//   })
+//   it("click on ApplyDebit",async ()=>{
+//     await browser.$('//li[text()="Apply Debit Card"]').click()
+//     expect(browser).toHaveUrlContaining('debit_card_form.php')
     
-})
-it("Enter the vlid details",async ()=>{
-    await browser.$('//input[@name="holder_name"]').setValue("Ria21")
-    await browser.$('//input[@name="dob"]').setValue("23-01-1997")
-    await browser.$('//input[@name="pan"]').setValue("AZDIJ3456H")
-    await browser.$('//input[@name="mob"]').setValue(9081476231)
-    await browser.$('//input[@name="acc_no"]').setValue(accno)
-    const elem = await $('//input[@name="acc_no"]')
-    await elem.waitForDisplayed({ timeout: 3000 });
-    await browser.$('//input[@name="dbt_crd_submit"]').click()
-})
-it("get debit num and pin",async ()=>{
-    await browser.isAlertOpen()
-    const text3=await browser.getAlertText()
-    console.log(text3);
-    var matches2 = text3.match(/\d+/g);
-    console.log(matches2)
-    debitnum=matches2[0];
-    debitpin=matches2[1];
-    console.log("debit num ="+debitnum);
-    console.log("debitpin="+debitpin);
-    await browser.acceptAlert()
-})
-it("click on home button",async ()=>{
-  await browser.$('=Home').click()
-  console.log(browser.getTitle());
-  expect(browser).toHaveTitleContaining("Online Banking System")
-})
-it("move to internetBanking",async ()=>{
-  browser.setWindowSize(700,700)
-  await browser.$(`//a[contains(text(),'Internet Banking')]`).moveTo({ })
-  const register=await browser.$('//li[text()="Register"]')
-  await register.waitForDisplayed({ timeout: 3000 });
-  await register.click()
-  expect(browser).toHaveUrlContaining('ebanking_reg_form.php')
-})
-it("enter all the details",async ()=>{
-  browser.maximizeWindow()
-  await browser.$('//input[@name="holder_name"]').setValue("Ria21")
-  await browser.$('//input[@name="accnum"]').setValue(accno)
-  await browser.$('//input[@name="dbtcard"]').setValue(debitnum)
-  await browser.$('//input[@name="dbtpin"]').setValue(debitpin)
-  await browser.$('//input[@name="mobile"]').setValue(9081476231)
-  await browser.$('//input[@name="pan_no"]').setValue("AZDIJ3456H")
-  await browser.$('//input[@name="dob"]').setValue("23-01-1997")
-  await browser.$('//input[@name="last_trans"]').setValue(10000)
-  await browser.$('//input[@name="password"]').setValue(123456789)
-  await browser.$('//input[@name="cnfrm_password"]').setValue(123456789)
-  await browser.$('//input[@value="Submit"]').click()
-  await browser.isAlertOpen()
-  const text4=await browser.getAlertText()
-  console.log(text4);
-  var matches4 = text4.match(/(\d+)/);
-  console.log(matches4);
-  custId=matches4[0];
-  console.log("CustomerId ="+custId);
-  browser.acceptAlert()
-})
-it("navigate to homepage",async ()=>{
-  await browser.$('=Home').click()
-  console.log(browser.getTitle());
-  await expect(browser).toHaveTitleContaining("Online Banking System")
-})
-it("click on login",async ()=>{
-  browser.setWindowSize(700,700)
-  await browser.$(`//a[contains(text(),'Internet Banking')]`).moveTo({ })
-  await browser.$('//li[text()="Login "]').click()
-  browser.maximizeWindow()
-  console.log(browser.getTitle());
-  expect(browser).toHaveTitleContaining("Login Page")
-})
-it("enter the login credentials",async ()=>{
-  await browser.$('//input[@name="customer_id"]').setValue(custId)
-  await browser.$('//input[@name="password"]').setValue(123456789)
-  await browser.$('//input[@name="login-btn"]').click()
-  console.log(browser.getTitle());
-  expect(browser).toHaveTitleContaining("My Profile")
-})
-it("click on fund transfer",async ()=>{
-  await browser.$('//li[text()="Fund Transfer"]').click()
-  expect(browser).toHaveUrlContaining("fund_transfer.php")
-})
-it("click on add beneficiary",async ()=>{
-  await browser.$('//input[@name="add_beneficiary"]').click()
-  console.log(browser.getTitle());
-  expect(browser).toHaveTitleContaining("Add Beneficiary")
-  await browser.$('//input[@name="beneficiary_name"]').setValue("vinay1234")
-  await browser.$('//input[@name="beneficiary_acno"]').setValue(1011421011309)
-  await browser.$('//input[@name="Ifsc_code"]').setValue(1011)
-  const type=await browser.$('//select[@name="beneficiary_acc_type"]')
-  type.selectByVisibleText("Saving")
-  await browser.pause(10000)
-  await browser.$('//input[@name="add_beneficiary_btn"]').click()
-  await browser.isAlertOpen()
-  await browser.acceptAlert()
-})
-it("fund transfer",async ()=>{
-  await browser.$('//li[contains(text(),"Fund Transfer")]').click()
-  console.log(browser.getTitle());
-  expect(browser).toHaveTitleContaining("Fund Transfer")
+// })
+// it("Enter the vlid details",async ()=>{
+//     await browser.$('//input[@name="holder_name"]').setValue("Ria21")
+//     await browser.$('//input[@name="dob"]').setValue("23-01-1997")
+//     await browser.$('//input[@name="pan"]').setValue("AZDIJ3456H")
+//     await browser.$('//input[@name="mob"]').setValue(9081476231)
+//     await browser.$('//input[@name="acc_no"]').setValue(accno)
+//     const elem = await $('//input[@name="acc_no"]')
+//     await elem.waitForDisplayed({ timeout: 3000 });
+//     await browser.$('//input[@name="dbt_crd_submit"]').click()
+// })
+// it("get debit num and pin",async ()=>{
+//     await browser.isAlertOpen()
+//     const text3=await browser.getAlertText()
+//     console.log(text3);
+//     var matches2 = text3.match(/\d+/g);
+//     console.log(matches2)
+//     debitnum=matches2[0];
+//     debitpin=matches2[1];
+//     console.log("debit num ="+debitnum);
+//     console.log("debitpin="+debitpin);
+//     await browser.acceptAlert()
+// })
+// it("click on home button",async ()=>{
+//   await browser.$('=Home').click()
+//   console.log(browser.getTitle());
+//   expect(browser).toHaveTitleContaining("Online Banking System")
+// })
+// it("move to internetBanking",async ()=>{
+//   browser.setWindowSize(700,700)
+//   await browser.$(`//a[contains(text(),'Internet Banking')]`).moveTo({ })
+//   const register=await browser.$('//li[text()="Register"]')
+//   await register.waitForDisplayed({ timeout: 3000 });
+//   await register.click()
+//   expect(browser).toHaveUrlContaining('ebanking_reg_form.php')
+// })
+// it("enter all the details",async ()=>{
+//   browser.maximizeWindow()
+//   await browser.$('//input[@name="holder_name"]').setValue("Ria21")
+//   await browser.$('//input[@name="accnum"]').setValue(accno)
+//   await browser.$('//input[@name="dbtcard"]').setValue(debitnum)
+//   await browser.$('//input[@name="dbtpin"]').setValue(debitpin)
+//   await browser.$('//input[@name="mobile"]').setValue(9081476231)
+//   await browser.$('//input[@name="pan_no"]').setValue("AZDIJ3456H")
+//   await browser.$('//input[@name="dob"]').setValue("23-01-1997")
+//   await browser.$('//input[@name="last_trans"]').setValue(10000)
+//   await browser.$('//input[@name="password"]').setValue(123456789)
+//   await browser.$('//input[@name="cnfrm_password"]').setValue(123456789)
+//   await browser.$('//input[@value="Submit"]').click()
+//   await browser.isAlertOpen()
+//   const text4=await browser.getAlertText()
+//   console.log(text4);
+//   var matches4 = text4.match(/(\d+)/);
+//   console.log(matches4);
+//   custId=matches4[0];
+//   console.log("CustomerId ="+custId);
+//   browser.acceptAlert()
+// })
+// it("navigate to homepage",async ()=>{
+//   await browser.$('=Home').click()
+//   console.log(browser.getTitle());
+//   await expect(browser).toHaveTitleContaining("Online Banking System")
+// })
+// it("click on login",async ()=>{
+//   browser.setWindowSize(700,700)
+//   await browser.$(`//a[contains(text(),'Internet Banking')]`).moveTo({ })
+//   await browser.$('//li[text()="Login "]').click()
+//   browser.maximizeWindow()
+//   console.log(browser.getTitle());
+//   expect(browser).toHaveTitleContaining("Login Page")
+// })
+// it("enter the login credentials",async ()=>{
+//   await browser.$('//input[@name="customer_id"]').setValue(custId)
+//   await browser.$('//input[@name="password"]').setValue(123456789)
+//   await browser.$('//input[@name="login-btn"]').click()
+//   console.log(browser.getTitle());
+//   expect(browser).toHaveTitleContaining("My Profile")
+// })
+// it("click on fund transfer",async ()=>{
+//   await browser.$('//li[text()="Fund Transfer"]').click()
+//   expect(browser).toHaveUrlContaining("fund_transfer.php")
+// })
+// it("click on add beneficiary",async ()=>{
+//   await browser.$('//input[@name="add_beneficiary"]').click()
+//   console.log(browser.getTitle());
+//   expect(browser).toHaveTitleContaining("Add Beneficiary")
+//   await browser.$('//input[@name="beneficiary_name"]').setValue("vinay1234")
+//   await browser.$('//input[@name="beneficiary_acno"]').setValue(1011421011309)
+//   await browser.$('//input[@name="Ifsc_code"]').setValue(1011)
+//   const type=await browser.$('//select[@name="beneficiary_acc_type"]')
+//   type.selectByVisibleText("Saving")
+//   await browser.pause(10000)
+//   await browser.$('//input[@name="add_beneficiary_btn"]').click()
+//   await browser.isAlertOpen()
+//   await browser.acceptAlert()
+// })
+// it("fund transfer",async ()=>{
+//   await browser.$('//li[contains(text(),"Fund Transfer")]').click()
+//   console.log(browser.getTitle());
+//   expect(browser).toHaveTitleContaining("Fund Transfer")
 
-})
-it("select the beneficiary",async ()=>{
-  const beneficiary=await browser.$('//select[@name="beneficiary"]')
-  beneficiary.selectByIndex(1)
-  await browser.$('//input[@name="trnsf_amount"]').setValue(1000)
-  await browser.$('//input[@name="trnsf_remark"]').setValue("Amount transferred")
-  await browser.pause(10000)
-  await browser.$('//input[@name="fnd_trns_btn"]').click()
-})
+// })
+// it("select the beneficiary",async ()=>{
+//   const beneficiary=await browser.$('//select[@name="beneficiary"]')
+//   beneficiary.selectByIndex(1)
+//   await browser.$('//input[@name="trnsf_amount"]').setValue(1000)
+//   await browser.$('//input[@name="trnsf_remark"]').setValue("Amount transferred")
+//   await browser.pause(10000)
+//   await browser.$('//input[@name="fnd_trns_btn"]').click()
+// })
 
-it("OTP verify",async ()=>{
-  console.log(browser.getTitle());
-  expect(browser).toHaveTitleContaining("OTP Verification")
-  await browser.pause(10000)
-  const text6=browser.$('//label[@class="OTP_msg"]').getText()
-  console.log(text6)
-  var text7=(await text6).toString()
-  var OTPtext = text7.split(":")
-  console.log(OTPtext[1])
-  OTP=OTPtext[1]
-  console.log(`OTP is = ${OTP}`);
-})
-it("transaction verification",async ()=>{
-  browser.$('//input[@name="otpcode"]').setValue(OTP)
-  await browser.pause(10000)
-  await browser.$('//input[@name="verify-btn"]').click()
-  await browser.isAlertOpen()
-  const message=await browser.getAlertText()
-  console.log(`Transaction message= ${message}`);
-  await browser.pause(10000)
-  await browser.acceptAlert()
-})
+// it("OTP verify",async ()=>{
+//   console.log(browser.getTitle());
+//   expect(browser).toHaveTitleContaining("OTP Verification")
+//   await browser.pause(10000)
+//   const text6=browser.$('//label[@class="OTP_msg"]').getText()
+//   console.log(text6)
+//   var text7=(await text6).toString()
+//   var OTPtext = text7.split(":")
+//   console.log(OTPtext[1])
+//   OTP=OTPtext[1]
+//   console.log(`OTP is = ${OTP}`);
+// })
+// it("transaction verification",async ()=>{
+//   browser.$('//input[@name="otpcode"]').setValue(OTP)
+//   await browser.pause(10000)
+//   await browser.$('//input[@name="verify-btn"]').click()
+//   await browser.isAlertOpen()
+//   const message=await browser.getAlertText()
+//   console.log(`Transaction message= ${message}`);
+//   await browser.pause(10000)
+//   await browser.acceptAlert()
+// })
 
 
 
