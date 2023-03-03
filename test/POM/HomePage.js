@@ -46,11 +46,13 @@
     }
     async clickOnInternetBanking_Register_link(){
         const register=await (this.InternetBankingReg_link)
-        await register.waitForDisplayed({ timeout: 3000 });
+        expect(await register.waitForDisplayed({ timeout: 5000 })).to.be.true
         await register.click()
     }
     async clickOnInternetBanking_Login_link(){
-        await (this.InternetBankingLogin_link).click()
+        const login=await (this.InternetBankingLogin_link)
+        expect(await login.waitForExist({timeout:5000})).to.be.true
+        await login.click()
     }
     async clickOnFundTransfer_link(){
         await (this.FundTransfer_link).click()

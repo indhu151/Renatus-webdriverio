@@ -125,9 +125,8 @@ it("click on approve pending",async ()=>{
           console.log("account is present");
           break
         }
-        // expect(element).toHaveText(accno)
-        // break
-      }
+        
+    }
     })
 
   it("Logout of staffHome page",async ()=>{

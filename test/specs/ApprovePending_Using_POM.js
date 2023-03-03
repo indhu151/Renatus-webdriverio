@@ -55,6 +55,7 @@ describe("Online Banking",async()=>{
         let title=await browser.getTitle();
         expect(title).to.equal("Staff Home")
       })
+    
     it("click on approve pending",async ()=>{
         await StaffHomePage.clickOnApprovePending_btn()
         expect(await browser.getTitle()).to.equal("Pending Customers")
@@ -67,11 +68,10 @@ describe("Online Banking",async()=>{
         await StaffHomePage.clickOnStaff_home_link()
         expect(await browser.getUrl()).to.include("staff_profile.php")
       })
-      it("click on active customer",async ()=>{
+      
+    it("click on active customer",async ()=>{
         await StaffHomePage.clickOnActiveCustomer_btn()
         expect(await browser.getUrl()).to.include("active_customers.php")
         await ActiveCustomerPage.check_Account_no(AccountNum)
-        
-        
-    })
+      })
 })

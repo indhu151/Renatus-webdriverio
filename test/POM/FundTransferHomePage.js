@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class FundTransferHomePage{
     get addbeneficiary_link(){
         return $(`//input[@name="add_beneficiary"]`)
@@ -27,6 +29,7 @@ class FundTransferHomePage{
     }
     async select_beneficiary(){
         const beneficiary=await (this.selectbeneficiary_tf)
+        expect(await beneficiary.waitForDisplayed({timeout:5000})).to.be.true
         await beneficiary.selectByIndex(1)
     }
     async Amt_Trans(){

@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class ApplyDebitPage
 {
     get holdername_tf(){
@@ -20,19 +22,20 @@ class ApplyDebitPage
     }
     //business library
     async details_for_Debit(AccountNum){
-        await (this.holdername_tf).setValue("Diya17")
-        await (this.dateOfBirth_tf).setValue("24-07-1994")
-        await (this.Panno_tf).setValue("AZDIJ4855H")
-        await (this.mobileNo_tf).setValue(9762354124)
+        await (this.holdername_tf).setValue("mani15")
+        await (this.dateOfBirth_tf).setValue("20-06-1996")
+        await (this.Panno_tf).setValue("AZDTJ2365H")
+        await (this.mobileNo_tf).setValue(9172223124)
         await (this.Account_no_tf).setValue(AccountNum)
     }
     async clickOnSubmit_debit(){
        const btn= await (this.submit_btn)
-       await btn.waitForDisplayed({ timeout: 3000 })
+       expect(await btn.waitForDisplayed({ timeout: 3000 })).to.be.true
        await btn.click()
     }
     async alertText(){
-      await browser.isAlertOpen()
+      let result=await browser.isAlertOpen()
+      expect(result).to.be.true
       const text3=await browser.getAlertText()
       console.log(text3);
       await browser.acceptAlert()

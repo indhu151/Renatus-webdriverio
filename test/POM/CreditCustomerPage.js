@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class CreditCustomerPage{
     get cust_accno_tf(){
         return $(`//input[@name="customer_account_no"]`)
@@ -16,7 +18,8 @@ class CreditCustomerPage{
         await (this.cust_accno_tf).setValue(accnum)
         await (this.AmountText_tf).setValue(10000)
         await (this.credit_btn).click()
-        console.log(browser.isAlertOpen())
+        let result=await browser.isAlertOpen()
+        expect(result).to.be.true
         await browser.acceptAlert()
     }
     async logout_Link(){

@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class StaffLoginPage
 {
     get StaffID_tf(){
@@ -14,7 +16,7 @@ class StaffLoginPage
         await (this.StaffID_tf).setValue(210001)
         await (this.Password_tf).setValue("password")
         const login = await (this.login_btn)
-        await login.waitForDisplayed({ timeout: 10000 });
+        expect(await login.waitForDisplayed({ timeout: 10000 })).to.be.true
         await login.click()
     }
 

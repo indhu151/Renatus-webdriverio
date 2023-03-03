@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class OTPVerificationPage
 {
     get otptext(){
@@ -25,10 +27,11 @@ class OTPVerificationPage
         await (this.verify_btn).click()
     }
     async trans_alertmessage(){
-            await browser.isAlertOpen()
-            let message=await browser.getAlertText()
-            await browser.acceptAlert()
-            return message
+        let result=await browser.isAlertOpen()
+        expect(result).to.be.true
+        let message=await browser.getAlertText()
+        await browser.acceptAlert()
+        return message
     }
 
 }

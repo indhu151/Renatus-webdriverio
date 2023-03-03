@@ -1,3 +1,4 @@
+import { expect } from "chai"
 
 
 class ApprovePendingPage{
@@ -7,6 +8,9 @@ class ApprovePendingPage{
     get search_Btn(){
         return $(`//input[@name="search_application"]`)
     }
+    get data(){
+        return $(`//td[text()="mani15"]`)
+    }
     get approve_btn(){
         return $(`//input[@name="approve_cust"]`)
     }
@@ -14,10 +18,13 @@ class ApprovePendingPage{
     async searchApplication_Approve(applicationnum){
         await (this.applicationNo_tf).setValue(applicationnum)
         await (this.search_Btn).click()
+        const details=await (this.data)
+        expect(await details.waitForExist({timeout:6000})).to.be.true
         await (this.approve_btn).click()
     }
        async capture_AccountNumber(){
-        console.log(browser.isAlertOpen())
+        let result=await browser.isAlertOpen()
+        expect(result).to.be.true
         const text1= await browser.getAlertText()
         var matches1 = text1.match(/(\d+)/);
         console.log(matches1);

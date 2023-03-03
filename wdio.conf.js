@@ -28,6 +28,9 @@ export const config = {
         './test/specs/**/*.js'
     ],
     // Patterns to exclude.
+    suites:{
+        smokeSuite:['']
+    },
     exclude: [
         './test/specs/example.e2e.js',
         './test/specs/StaffLogin.js'

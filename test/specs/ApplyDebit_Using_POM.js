@@ -27,64 +27,6 @@ describe("Online Banking",async()=>{
   let text3
   let debitnumber=1
   let debitpinno=12
-  let custId=12
-  let OTP
-   it("navigate to application",async ()=>{
-     await browser.maximizeWindow()
-     await browser.url("http://testingserver/domain/Online_Banking_System/")
-     let title=await browser.getTitle()
-     expect(title).to.equal("Online Banking System")
- })
-   it("click on openAccount",async ()=>{
-     await HomePage.clickOnOpenAccount_link()
-     let title=await browser.getTitle();
-     expect(title).to.include("Registration Form")
- })
-   it("Enter all the valid details",async ()=>{
-     await OpenAccountPage.validDetails()
- })
-   it("click on submit",async ()=>{
-     await OpenAccountPage.clickOnSubmit_btn()
- })
-   it("confirm",async ()=>{
-     let title=await browser.getTitle();
-     expect(title).to.equal("Confirm")
-     await ConfirmPage.clickOnConfirm_btn()
-     await ConfirmPage.isAlertPresent()
-     ApplicationNo= await ConfirmPage.capture_ApplicationNo()
-     console.log("Application_Number ="+ApplicationNo);
- })
-   it("click on staffLogin",async ()=>{
-     await HomePage.clickOnStaffLogin_link()
-     expect(await browser.getTitle()).to.include("Staff Page")
- })
- it("Navigate to StaffLogin Page",async ()=>{
-     await StaffLoginPage.StaffLogin_details()
-     let title=await browser.getTitle();
-     expect(title).to.equal("Staff Home")
- })
- it("click on approve pending",async ()=>{
-     await StaffHomePage.clickOnApprovePending_btn()
-     expect(await browser.getTitle()).to.equal("Pending Customers")
-     await ApprovePendingPage.searchApplication_Approve(ApplicationNo)
-     AccountNum=await ApprovePendingPage.capture_AccountNumber()
-     console.log("Account number ="+AccountNum);
-  })
- it("Navigate to staff Homepage",async ()=>{
-     await StaffHomePage.clickOnStaff_home_link()
-     expect(await browser.getUrl()).to.include("staff_profile.php")
-  })
- it("click on credit customer_btn",async ()=>{
-     await StaffHomePage.clickOnCreditCust_btn()
-     expect(await browser.getUrl()).to.include("credit_customer_ac.php")
- })
- it("enter the credit details",async()=>{
-     await CreditCustomerPage.credit_Amount(AccountNum)
- })
- it("Logout of staffHome page",async ()=>{
-    await CreditCustomerPage.logout_Link()
-    expect(await browser.getTitle()).to.equal("Staff Page")
- })
  it("click on home button",async ()=>{
     await HomePage.clickOnHome_link()
     expect(await browser.getTitle()).to.equal("Online Banking System")

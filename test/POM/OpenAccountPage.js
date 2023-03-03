@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class OpenAccountPage
 {
     
@@ -58,27 +60,31 @@ class OpenAccountPage
    //business library
    async validDetails()
    {
-    await (this.name_tf).setValue("Diya17")
+    await (this.name_tf).setValue("mani15")
     const gen=await (this.gender)
-    gen.selectByVisibleText("Female")
-    await (this.mobileno_tf).setValue(9762354124)
-    await (this.emailid_tf).setValue("diya17@gmail.com")
-    await (this.landlineno_tf).setValue(223344)
-    await (this.dateOfBirth_tf).setValue("24-07-1994")
-    await (this.pan_tf).setValue("AZDIJ4855H")
+    expect(await gen.waitForDisplayed({timeout:5000})).to.be.true
+    await gen.selectByVisibleText("Female")
+    await (this.mobileno_tf).setValue(9172223124)
+    await (this.emailid_tf).setValue("mani15@gmail.com")
+    await (this.landlineno_tf).setValue(225544)
+    await (this.dateOfBirth_tf).setValue("20-06-1996")
+    await (this.pan_tf).setValue("AZDTJ2365H")
     await (this.citizenship_tf).setValue("345677")
     await (this.homeaddress_tf).setValue("banshankari")
     await (this.officeaddress_tf).setValue("BTM")
     const state=await (this.state_tf)
-    state.selectByVisibleText("Florida")
+    expect(await state.waitForExist({timeout:3000})).to.be.true
+    await state.selectByVisibleText("Florida")
     const city=await (this.city_tf)
-    city.selectByVisibleText("Houston")
+    expect(await city.waitForDisplayed({timeout:5000})).to.be.true
+    await city.selectByVisibleText("Houston")
     await (this.pincode_tf).setValue(560077)
     await (this.locality_tf).setValue("School")
     await (this.nomineeName_tf).setValue("Rahul")
     await (this.nomineeAcc_tf).setValue(2345781234)
     const acctype=await (this.accounttype)
-    acctype.selectByVisibleText("Saving")
+    expect(await acctype.waitForExist({timeout:3000})).to.be.true
+    await acctype.selectByVisibleText("Saving")
     }
     async clickOnSubmit_btn(){
     const submitbtn=await (this.submit_btn)

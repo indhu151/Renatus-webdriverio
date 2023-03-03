@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 class ConfirmPage
 {
     get confirm_btn(){
@@ -8,7 +10,8 @@ class ConfirmPage
         await (this.confirm_btn).click()
     }
     async isAlertPresent(){
-       console.log(await browser.isAlertOpen())
+       let result=await browser.isAlertOpen()
+       expect(result).to.be.true
     }
     async capture_ApplicationNo(){
         var text=await browser.getAlertText()
