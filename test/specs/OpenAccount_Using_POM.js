@@ -30,7 +30,7 @@ describe("Online Banking",async()=>{
      let debitpinno=12
      let custId=12
      let OTP
-      it("navigate to application",async ()=>{
+      it("navigate to application-smoke",async ()=>{
         await browser.maximizeWindow()
         await browser.url("http://testingserver/domain/Online_Banking_System/")
         let title=await browser.getTitle()
@@ -55,11 +55,11 @@ describe("Online Banking",async()=>{
         ApplicationNo= await ConfirmPage.capture_ApplicationNo()
         console.log("Application_Number ="+ApplicationNo);
     })
-      it("click on staffLogin",async ()=>{
+      it("click on staffLogin-smoke",async ()=>{
         await HomePage.clickOnStaffLogin_link()
         expect(await browser.getTitle()).to.include("Staff Page")
     })
-    it("Navigate to StaffLogin Page",async ()=>{
+    it("Navigate to StaffLogin Page-smoke",async ()=>{
         await StaffLoginPage.StaffLogin_details()
         let title=await browser.getTitle();
         expect(title).to.equal("Staff Home")

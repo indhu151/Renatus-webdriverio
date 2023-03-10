@@ -2,6 +2,7 @@ import { expect } from "chai"
 
 class ConfirmPage
 {
+    
     get confirm_btn(){
         return $(`//input[@name="cnfrm-submit"]`)
     }

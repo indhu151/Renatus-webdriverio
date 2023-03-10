@@ -1,4 +1,9 @@
 import {expect} from 'chai';
+const drivers = {
+    chrome: { version: '110.0.5481.77' }, // https://chromedriver.chromium.org/
+    firefox: { version: '0.32.2' }, // https://github.com/mozilla/geckodriver/releases
+    //chromiumedge: { version: '85.0.564.70' } // https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+}
 
 export const config = {
     //
@@ -25,15 +30,25 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        // './test/specs/**/*.js'
+        //'./test/specs/OpenAccount_Using_POM.js'
+       './test/specs/Assignments/AutoSuggestion.js',
+       //'./test/specs/Assignments/igp.js'
+        // './test/specs/OpenAccount_Using_POM.js',
+       // './test/specs/ApprovePending_Using_POM.js',
+       // './test/specs/creditcustomer_Using_POM.js'
+       // './test/specs/FundTransfer_Using_POM.js'
+
     ],
     // Patterns to exclude.
     suites:{
-        smokeSuite:['']
+        // smokeSuite:['./test/specs/OpenAccount_Using_POM.js'],
+        //regressionSuite:['./test/specs/InternetBanking_Reg_Using_POM.js','./test/specs/InternetBanking_Login_Using_POM.js','./test\specs\FundTransfer_Using_POM.js']
+
     },
     exclude: [
-        './test/specs/example.e2e.js',
-        './test/specs/StaffLogin.js'
+        // './test/specs/example.e2e.js',
+        // './test/specs/StaffLogin.js'
         // 'path/to/excluded/files'
     ],
     //
@@ -58,13 +73,13 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
+    capabilities: [
+     {
     
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         maxInstances: 5,
-        //
         browserName: 'chrome',
         acceptInsecureCerts: true,
         'goog:chromeOptions': {
@@ -77,7 +92,14 @@ export const config = {
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
-    }],
+  },
+    // {
+    //     maxInstances: 5,
+    //     browserName: 'firefox',
+    //     //port: 4444,
+    //     acceptInsecureCerts: true,
+    // }
+],
     //
     // ===================
     // Test Configurations
@@ -103,7 +125,7 @@ export const config = {
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
-    bail: 0,
+    bail: 0 ,
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -126,6 +148,18 @@ export const config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
+    // [(function() {
+    //     if(process.env.browser===undefined || process.env.browser==="chrome") {
+    //         return "chromedriver";
+    //     } else if(process.env.browser==="firefox") {
+    //         return "geckodriver";
+    //     } else if(process.env.browser==="MicrosoftEdge") {
+    //         return "edgedriver";
+    //     }
+    // })(), {
+    //     port: process.env.port ? parseInt(process.env.port): 9515
+    // }]
+//],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -147,7 +181,13 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec', 
+         ['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }],
+],
 
 
     
@@ -253,8 +293,14 @@ export const config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
+     afterTest: 
+     //function(test, context, { error, result, duration, passed, retries }) {
     // },
+     async function (step, scenario, { error, duration, passed }, context) {
+        if (error) {
+          await browser.takeScreenshot();
+        }
+      }
 
 
     /**

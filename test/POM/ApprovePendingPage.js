@@ -9,7 +9,7 @@ class ApprovePendingPage{
         return $(`//input[@name="search_application"]`)
     }
     get data(){
-        return $(`//td[text()="mani15"]`)
+        return $(`//td[text()="mani2"]`)
     }
     get approve_btn(){
         return $(`//input[@name="approve_cust"]`)
@@ -19,7 +19,7 @@ class ApprovePendingPage{
         await (this.applicationNo_tf).setValue(applicationnum)
         await (this.search_Btn).click()
         const details=await (this.data)
-        expect(await details.waitForExist({timeout:6000})).to.be.true
+        expect(await details.waitForExist({timeout:10000})).to.be.true
         await (this.approve_btn).click()
     }
        async capture_AccountNumber(){

@@ -22,10 +22,10 @@ class ApplyDebitPage
     }
     //business library
     async details_for_Debit(AccountNum){
-        await (this.holdername_tf).setValue("mani15")
-        await (this.dateOfBirth_tf).setValue("20-06-1996")
-        await (this.Panno_tf).setValue("AZDTJ2365H")
-        await (this.mobileNo_tf).setValue(9172223124)
+        await (this.holdername_tf).setValue("mani2")
+        await (this.dateOfBirth_tf).setValue("21-06-1996")
+        await (this.Panno_tf).setValue("AZDTJ4365H")
+        await (this.mobileNo_tf).setValue(9272653124)
         await (this.Account_no_tf).setValue(AccountNum)
     }
     async clickOnSubmit_debit(){

@@ -13,7 +13,7 @@ class InternetBanking_LoginPage
     //business Library
     async Login_Customer(custId){
         await (this.Customer_Id_tf).setValue(custId)
-        await (this.Cust_Password_tf).setValue("abc@123")
+        await (this.Cust_Password_tf).setValue("abc@124")
         await (this.Login_Cust_btn).click()
     }
 }

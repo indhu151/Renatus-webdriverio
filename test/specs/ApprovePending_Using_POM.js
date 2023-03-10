@@ -20,8 +20,7 @@ import ActiveCustomerPage from "../POM/ActiveCustomerPage.js"
 describe("Online Banking",async()=>{
      let ApplicationNo
      let AccountNum=11
-     
-      it("navigate to application",async ()=>{
+    it("navigate to application",async ()=>{
         await browser.maximizeWindow()
         await browser.url("http://testingserver/domain/Online_Banking_System/")
         let title=await browser.getTitle()
@@ -59,7 +58,7 @@ describe("Online Banking",async()=>{
     it("click on approve pending",async ()=>{
         await StaffHomePage.clickOnApprovePending_btn()
         expect(await browser.getTitle()).to.equal("Pending Customers")
-        await ApprovePendingPage.searchApplication_Approve(ApplicationNo)
+        await ApprovePendingPage.searchApplication_Approve(Applicationo)
         AccountNum=await ApprovePendingPage.capture_AccountNumber()
         console.log("Account number ="+AccountNum);
       })

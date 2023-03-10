@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Mon Mar 06 15:47:28 IST 2023","Mon Mar 06 15:47:40 IST 2023","11410","","igb","","","","calender popup",""
+"broken","Mon Mar 06 15:46:51 IST 2023","Mon Mar 06 15:47:25 IST 2023","34626","","igb","","","","enter into website",""
+"broken","Mon Mar 06 15:47:50 IST 2023","Mon Mar 06 15:48:01 IST 2023","10621","","igb","","","","continue booking",""
+"broken","Mon Mar 06 15:47:40 IST 2023","Mon Mar 06 15:47:50 IST 2023","10513","","igb","","","","tadd to cart",""
+"broken","Mon Mar 06 15:47:25 IST 2023","Mon Mar 06 15:47:28 IST 2023","2760","","igb","","","","check availability",""
+"broken","Mon Mar 06 15:48:01 IST 2023","Mon Mar 06 15:48:01 IST 2023","379","","igb","","","","to get the price",""

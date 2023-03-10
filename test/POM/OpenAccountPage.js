@@ -60,15 +60,15 @@ class OpenAccountPage
    //business library
    async validDetails()
    {
-    await (this.name_tf).setValue("mani15")
+    await (this.name_tf).setValue("mani2")
     const gen=await (this.gender)
     expect(await gen.waitForDisplayed({timeout:5000})).to.be.true
     await gen.selectByVisibleText("Female")
-    await (this.mobileno_tf).setValue(9172223124)
-    await (this.emailid_tf).setValue("mani15@gmail.com")
+    await (this.mobileno_tf).setValue(9272653124)
+    await (this.emailid_tf).setValue("mani2@gmail.com")
     await (this.landlineno_tf).setValue(225544)
-    await (this.dateOfBirth_tf).setValue("20-06-1996")
-    await (this.pan_tf).setValue("AZDTJ2365H")
+    await (this.dateOfBirth_tf).setValue("21-06-1996")
+    await (this.pan_tf).setValue("AZDTJ4365H")
     await (this.citizenship_tf).setValue("345677")
     await (this.homeaddress_tf).setValue("banshankari")
     await (this.officeaddress_tf).setValue("BTM")
